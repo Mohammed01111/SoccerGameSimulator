@@ -18,6 +18,7 @@ namespace SoccerGameSimulator
             team2 = new Team(team2Name);
             rand = new Random();
         }
+
         private void SimulateTurn(Team attackingTeam, Team defendingTeam, int turn)
         {
             Console.WriteLine($"\nTurn {turn}: {attackingTeam.Name} are attacking...");
@@ -28,8 +29,8 @@ namespace SoccerGameSimulator
             // Calculate the skill sum for defending team (Defender + Goalkeeper)
             int defenseSkill = defendingTeam.GetSkillSum("Defender") + defendingTeam.GetSkillSum("Goalkeeper");
 
-            // Dynamic threshold based on difference between attack and defense
-            int threshold = 10;  // You can experiment with different threshold values
+            // Increase the threshold for scoring. Adjust the value as needed.
+            int threshold = 15;  // Increase the threshold for scoring
 
             // Print debug information for better understanding
             Console.WriteLine($"Attack skill: {attackSkill}, Defense skill: {defenseSkill}");
@@ -48,6 +49,7 @@ namespace SoccerGameSimulator
             // Print the current score after each turn
             Console.WriteLine($"Current Score: {team1.Name}: {team1.Score} | {team2.Name}: {team2.Score}");
         }
+
         private void CoinToss()
         {
             if (rand.Next(2) == 0)
@@ -64,14 +66,14 @@ namespace SoccerGameSimulator
         {
             // Define unique player names for each team
             List<string> team1Names = new List<string> { "Mohammed", "Ali", "Said", "Saleh", "Ibrahim", "Zubair", "Rashid", "Mahmood", "Moath", "Abdullah", "Monther" };
-            List<string> team2Names = new List<string> { "Yasir", "Noah", "Ahmed", "Hamed", "Azhar", "Hussam", "Faried", "Bassam", "Sami", "Asaad", "nasser" };
+            List<string> team2Names = new List<string> { "Yasir", "Noah", "Ahmed", "Hamed", "Azhar", "Hussam", "Faried", "Bassam", "Sami", "Asaad", "Nasser" };
             List<string> positions = new List<string> { "Forward", "Midfielder", "Defender", "Goalkeeper" };
 
             // Generate players for both teams
             team1.GeneratePlayers(team1Names, positions);
             team2.GeneratePlayers(team2Names, positions);
 
-            // Display players and  skill levels
+            // Display players and their skill levels
             Console.WriteLine("\nGenerating players for both teams...");
             team1.DisplayPlayers();
             Console.WriteLine();

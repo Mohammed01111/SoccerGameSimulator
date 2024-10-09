@@ -78,7 +78,7 @@ namespace SoccerGameSimulator
             team2.DisplayPlayers();
             Console.WriteLine();
 
-            //To decide which team attacks first
+            // To decide which team attacks first
             CoinToss();
 
             // First half - 5 turns
@@ -128,7 +128,6 @@ namespace SoccerGameSimulator
             {
                 Console.WriteLine("It's a draw!");
             }
-
         }
     }
 }

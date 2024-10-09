@@ -28,8 +28,11 @@ namespace SoccerGameSimulator
             // Calculate the skill sum for defending team (Defender + Goalkeeper)
             int defenseSkill = defendingTeam.GetSkillSum("Defender") + defendingTeam.GetSkillSum("Goalkeeper");
 
+            // Dynamic threshold based on difference between attack and defense
+            int threshold = 10;  // You can experiment with different threshold values
 
-            int threshold = 3;
+            // Print debug information for better understanding
+            Console.WriteLine($"Attack skill: {attackSkill}, Defense skill: {defenseSkill}");
 
             // Check if the attacking team successfully scores a goal
             if (attackSkill > (defenseSkill + threshold))
@@ -43,9 +46,7 @@ namespace SoccerGameSimulator
             }
 
             // Print the current score after each turn
-            Console.WriteLine($"Current Score: {attackingTeam.Name}: {attackingTeam.Score} | {defendingTeam.Name}: {defendingTeam.Score}");
-
-
+            Console.WriteLine($"Current Score: {team1.Name}: {team1.Score} | {team2.Name}: {team2.Score}");
         }
         private void CoinToss()
         {
@@ -86,28 +87,28 @@ namespace SoccerGameSimulator
             {
                 if (turn % 2 != 0)
                 {
-                    
+                    // Team 1 attacks, Team 2 defends
                     SimulateTurn(team1, team2, turn);
                 }
                 else
                 {
-                    
+                    // Team 2 attacks, Team 1 defends
                     SimulateTurn(team2, team1, turn);
                 }
             }
 
-            
+            // Second half - 5 turns
             Console.WriteLine("\n--- Second Half ---");
             for (int turn = 6; turn <= 10; turn++)
             {
                 if (turn % 2 != 0)
                 {
-                    
+                    // Team 1 attacks, Team 2 defends
                     SimulateTurn(team1, team2, turn);
                 }
                 else
                 {
-                    
+                    // Team 2 attacks, Team 1 defends
                     SimulateTurn(team2, team1, turn);
                 }
             }

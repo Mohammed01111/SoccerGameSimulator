@@ -32,5 +32,29 @@ namespace SoccerGameSimulator
                 Players.Add(player);
             }
         }
+
+        public int GetSkillSum(string position)
+        {
+            int sum = 0;
+            foreach (var player in Players)
+            {
+                if (player.Position == position)
+                {
+                    sum += player.Skill;
+                }
+            }
+            return sum;
+        }
+
+        // Display players and skills for the team
+        public void DisplayPlayers()
+        {
+            Console.WriteLine($"{Name}:");
+            for (int i = 0; i < Players.Count; i++)
+            {
+                Player player = Players[i];
+                Console.WriteLine($"{i + 1}. {player.Name} - {player.Position} (Skill: {player.Skill})");
+            }
+        }
     }
 }

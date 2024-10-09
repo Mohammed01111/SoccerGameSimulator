@@ -44,6 +44,20 @@ namespace SoccerGameSimulator
 
             // Print the current score after each turn
             Console.WriteLine($"Current Score: {attackingTeam.Name}: {attackingTeam.Score} | {defendingTeam.Name}: {defendingTeam.Score}");
+
+
         }
+        private void CoinToss()
+        {
+            if (rand.Next(2) == 0)
+            {
+                Console.WriteLine($"{team1.Name} will start the game.");
+            }
+            else
+            {
+                Console.WriteLine($"{team2.Name} will start the game.");
+            }
+        }
+
     }
 }

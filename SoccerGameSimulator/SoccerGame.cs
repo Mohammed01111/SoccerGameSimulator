@@ -23,20 +23,29 @@ namespace SoccerGameSimulator
         {
             Console.WriteLine($"\nTurn {turn}: {attackingTeam.Name} are attacking...");
 
-            // Calculate the skill sum for attacking team (Forward + Midfielder)
+            // Calculate the skill sum for attacking team 
             int attackSkill = attackingTeam.GetSkillSum("Forward") + attackingTeam.GetSkillSum("Midfielder");
 
-            // Calculate the skill sum for defending team (Defender + Goalkeeper)
+            // Calculate the skill sum for defending team
             int defenseSkill = defendingTeam.GetSkillSum("Defender") + defendingTeam.GetSkillSum("Goalkeeper");
 
-            // Increase the threshold for scoring. Adjust the value as needed.
-            int threshold = 15;  // Increase the threshold for scoring
+            //skill difference to calculate the base chance to score
+            int skillDifference = attackSkill - defenseSkill;
 
-            // Print debug information for better understanding
-            Console.WriteLine($"Attack skill: {attackSkill}, Defense skill: {defenseSkill}");
+            // The higher the skill difference, the higher the chance to score
+            Random rand = new Random();
 
-            // Check if the attacking team successfully scores a goal
-            if (attackSkill > (defenseSkill + threshold))
+            // Basic success chance based on the skill difference
+            int baseChanceToScore = Math.Max(20, 50 + skillDifference);  
+
+            
+            int randomFactor = rand.Next(100);  
+
+            // Check if the attack is successful based on the base chance and randomness
+            bool scored = randomFactor < baseChanceToScore;
+
+            // Update the score if the attack is successful
+            if (scored)
             {
                 attackingTeam.Score++;
                 Console.WriteLine($"{attackingTeam.Name} scores!");
@@ -46,7 +55,7 @@ namespace SoccerGameSimulator
                 Console.WriteLine($"{defendingTeam.Name} defends successfully!");
             }
 
-            // Print the current score after each turn
+            
             Console.WriteLine($"Current Score: {team1.Name}: {team1.Score} | {team2.Name}: {team2.Score}");
         }
 

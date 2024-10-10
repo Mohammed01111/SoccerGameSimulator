@@ -61,6 +61,57 @@ namespace SoccerGameSimulator
                 Console.WriteLine($"{team2.Name} will start the game.");
             }
         }
+        private void PenaltyShootout()
+        {
+            Console.WriteLine("\n--- Penalty Shootout ---");
+            int team1Penalties = 3;
+            int team2Penalties = 3;
+
+            int team1Score = 0;
+            int team2Score = 0;
+
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine($"\nPenalty {i + 1}: {team1.Name} is shooting...");
+                if (TakePenaltyShot(team1))
+                {
+                    team1Score++;
+                    Console.WriteLine($"{team1.Name} scores!");
+                }
+                else
+                {
+                    Console.WriteLine($"{team1.Name} misses!");
+                }
+
+                Console.WriteLine($"\nPenalty {i + 1}: {team2.Name} is shooting...");
+                if (TakePenaltyShot(team2))
+                {
+                    team2Score++;
+                    Console.WriteLine($"{team2.Name} scores!");
+                }
+                else
+                {
+                    Console.WriteLine($"{team2.Name} misses!");
+                }
+            }
+
+            // Display final penalty shootout result
+            Console.WriteLine($"\nPenalty Shootout Result: {team1.Name}: {team1Score} | {team2.Name}: {team2Score}");
+
+            // Declare the winner based on penalty shootout scores
+            if (team1Score > team2Score)
+            {
+                Console.WriteLine($"{team1.Name} wins the penalty shootout!");
+            }
+            else if (team2Score > team1Score)
+            {
+                Console.WriteLine($"{team2.Name} wins the penalty shootout!");
+            }
+            else
+            {
+                Console.WriteLine("It's still a draw after penalties!");
+            }
+        }
 
         public void StartGame()
         {

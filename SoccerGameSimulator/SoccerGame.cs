@@ -112,6 +112,24 @@ namespace SoccerGameSimulator
                 Console.WriteLine("It's still a draw after penalties!");
             }
         }
+        private bool TakePenaltyShot(Team team)
+        {
+
+            Player shooter = team.Players[rand.Next(team.Players.Count)];
+            int shooterSkill = shooter.Skill;
+
+            // Find the goalkeeper from the opposing team
+            Player goalkeeper = team == team1
+                ? team2.Players.FirstOrDefault(p => p.Position == "Goalkeeper")
+                : team1.Players.FirstOrDefault(p => p.Position == "Goalkeeper");
+
+            int goalkeeperSkill = goalkeeper.Skill;  // The skill of the goalkeeper
+            int chanceOfScoring = 50 + (shooterSkill - goalkeeperSkill);
+
+
+            return rand.Next(100) < chanceOfScoring;
+        }
+
 
         public void StartGame()
         {

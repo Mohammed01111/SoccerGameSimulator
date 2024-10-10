@@ -123,6 +123,7 @@ namespace SoccerGameSimulator
                 ? team2.Players.FirstOrDefault(p => p.Position == "Goalkeeper")
                 : team1.Players.FirstOrDefault(p => p.Position == "Goalkeeper");
 
+
             int goalkeeperSkill = goalkeeper.Skill;  // The skill of the goalkeeper
             int chanceOfScoring = 50 + (shooterSkill - goalkeeperSkill);
 
@@ -198,6 +199,18 @@ namespace SoccerGameSimulator
             else
             {
                 Console.WriteLine("It's a draw!");
+
+
+                Console.WriteLine("Do you want to proceed to penalty shootouts? (yes/no): ");
+                string answer = Console.ReadLine().ToLower();
+                if (answer == "yes")
+                {
+                    PenaltyShootout();
+                }
+                else
+                {
+                    Console.WriteLine("Game over! It's a draw ");
+                }
             }
         }
     }
